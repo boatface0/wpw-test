@@ -1,1 +1,74 @@
-<h1> Hello world</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Noah Chalfant">
+    <link rel="icon" type="image/png" href="monkey.png">
+    <title>Catch it if you can</title>
+
+      <style>
+
+        body {
+            background-image: url(AdobeStock_610427418.png); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-attachment:local; 
+        }
+        .tree {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 5vw;
+        }
+        .oval {
+            background-image: url(AdobeStock_576711033.png);
+            background-size: cover;
+            border-radius: 50%;
+            height: 20vw;
+            width: 20vw;
+            padding: 1vw;
+            transition: transform 1s ease-in-out; 
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="tree">
+        <div class="oval"></div>
+        <div class="oval"></div>
+        <div class="oval"></div>
+        <div class="oval"></div>
+        <div class="oval"></div>
+        <div class="oval"></div>
+        <div class="oval"></div>
+        <div class="oval"></div>
+        <div class="oval"></div>
+    </div>
+
+    <script>
+        const ovals = document.querySelectorAll('.oval');
+        ovals.forEach((oval) => {
+            oval.addEventListener('mouseover', () => {
+                // Calculate a random position within the window
+                const randomX = Math.random() * (window.innerWidth - oval.clientWidth);
+                const randomY = Math.random() * (window.innerHeight - oval.clientHeight);
+
+                // Apply a transform to move the oval to the random position
+                oval.style.transform = `translate(${randomX}px, ${randomY}px) scale(.1)`;
+            });
+
+            oval.addEventListener('mouseout', () => {
+                // Reset the transform when the mouse moves out
+                oval.style.transform = 'translate(0, 0) scale(1)';
+            });
+
+            oval.addEventListener('click', () => {
+                // Scale up when clicked
+                oval.style.transform = 'scale(5)';
+            });
+        });
+    </script>
+</body>
+</html>
